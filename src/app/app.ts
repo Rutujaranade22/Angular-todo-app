@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
-@Component({
+ import { Todolist } from './todolist/todolist';
+  @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [Todolist],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected title = 'todo-app';
 }
+ 
