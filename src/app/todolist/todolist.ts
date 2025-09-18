@@ -1,16 +1,33 @@
 import { Component } from '@angular/core';
-import { Task } from '../task.model';
-import { TaskService } from '../task';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIcon } from '@angular/material/icon';
+import { MatCard } from '@angular/material/card';
+import {  MatList, MatListItem } from '@angular/material/list';
  @Component({
   selector: 'app-todolist',
-  imports: [CommonModule, FormsModule],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatToolbarModule,MatIcon,MatCard,MatList,MatListItem
+  ],
   templateUrl: './todolist.html',
   styleUrl: './todolist.css'
 })
 export class Todolist {
-   newTask: string = '';
+  newTask: string = '';
   tasks: { id: number; title: string; completed: boolean }[] = [];
 
   addTask() {
