@@ -5,12 +5,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIcon } from '@angular/material/icon';
-import { MatCard } from '@angular/material/card';
-import {  MatList, MatListItem } from '@angular/material/list';
- @Component({
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+
+@Component({
   selector: 'app-todolist',
   standalone: true,
   imports: [
@@ -20,8 +21,11 @@ import {  MatList, MatListItem } from '@angular/material/list';
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatTableModule,
-    MatToolbarModule,MatIcon,MatCard,MatList,MatListItem
+    MatIconModule,
+    MatListModule,
+    MatToolbarModule,
+    MatTabsModule,
+    MatCardModule
   ],
   templateUrl: './todolist.html',
   styleUrl: './todolist.css'
@@ -29,6 +33,7 @@ import {  MatList, MatListItem } from '@angular/material/list';
 export class Todolist {
   newTask: string = '';
   tasks: { id: number; title: string; completed: boolean }[] = [];
+  filterIndex: number = 0; // 0 = All, 1 = Active, 2 = Completed
 
   addTask() {
     if (this.newTask.trim()) {
@@ -44,5 +49,14 @@ export class Todolist {
 
   deleteTask(id: number) {
     this.tasks = this.tasks.filter(t => t.id !== id);
+  }
+
+  get filteredTasks() {
+    if (this.filterIndex === 1) {
+      return this.tasks.filter(t => !t.completed); // Active
+    } else if (this.filterIndex === 2) {
+      return this.tasks.filter(t => t.completed);  // Completed
+    }
+    return this.tasks; // All
   }
 }

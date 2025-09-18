@@ -1,25 +1,57 @@
-.todo-container {
-  max-width: 600px;
-  margin: 20px auto;
-}
+/* Center Toolbar Content */
 .toolbar-center {
   display: flex;
   justify-content: center;
-  align-items: center;     
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 500;
 }
 
+/* Main container */
+.todo-container {
+  max-width: 600px;
+  margin: 20px auto;
+  font-family: 'Segoe UI', sans-serif;
+}
 
+/* Full width input */
 .full-width {
   width: 100%;
   margin-bottom: 15px;
 }
 
+/* Task cards */
+.task-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 0;
+  padding: 12px;
+}
+
+/* Completed task */
 .completed {
   text-decoration: line-through;
   color: gray;
 }
 
+/* Task title */
 .task-title {
   flex: 1;
   margin-left: 10px;
+  font-size: 16px;
+}
+
+/* Tabs styling */
+.tabs {
+  margin: 20px 0;
+}
+
+/* Empty state */
+.empty-msg {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  margin-top: 20px;
 }

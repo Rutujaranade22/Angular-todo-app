@@ -1,33 +1,38 @@
+<!-- Toolbar -->
 <mat-toolbar color="primary" class="toolbar-center">
-  📝 My To-Do List
+  <mat-icon>check_circle</mat-icon>
+  <span> My To-Do List </span>
 </mat-toolbar>
 
-
 <div class="todo-container">
-  <mat-card>
-    <h2>Task to complete</h2>
 
+  <!-- Input Section -->
+  <mat-card>
+    <h2>Add a Task</h2>
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Enter your task</mat-label>
-      <input matInput [(ngModel)]="newTask" name="taskInput" required />
+      <input matInput [(ngModel)]="newTask" name="taskInput" />
     </mat-form-field>
 
-    <button mat-raised-button color="accent" (click)="addTask()">Submit</button>
+    <button mat-raised-button color="accent" (click)="addTask()" [disabled]="!newTask.trim()">
+      <mat-icon>add</mat-icon> Add Task
+    </button>
   </mat-card>
 
-  <mat-list>
-    <mat-list-item *ngFor="let task of tasks">
-      <mat-checkbox [(ngModel)]="task.completed" color="primary"
-        (change)="toggleTask(task.id)">
-      </mat-checkbox>
+  <mat-tab-group [(selectedIndex)]="filterIndex" class="tabs">
+  <mat-tab label="All"></mat-tab>
+  <mat-tab label="Active"></mat-tab>
+  <mat-tab label="Completed"></mat-tab>
+</mat-tab-group>
 
-      <span [class.completed]="task.completed" class="task-title">
-        {{ task.title }}
-      </span>
-
-      <button mat-icon-button color="warn" (click)="deleteTask(task.id)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </mat-list-item>
-  </mat-list>
+<mat-list>
+  <mat-list-item *ngFor="let task of filteredTasks">
+    <mat-checkbox [(ngModel)]="task.completed" (change)="toggleTask(task.id)">
+    </mat-checkbox>
+    <span [class.completed]="task.completed" class="task-title">{{ task.title }}</span>
+    <button mat-icon-button color="warn" (click)="deleteTask(task.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>
 </div>
